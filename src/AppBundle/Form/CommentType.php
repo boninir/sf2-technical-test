@@ -4,6 +4,7 @@ namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -17,8 +18,9 @@ class CommentType extends AbstractType
         $builder
             ->add('comment')
             ->add('repoId', HiddenType::class)
-            ->add('ownerId', HiddenType::class)
-            ->add('date', null, array( 'attr'=>array('style'=>'display:none;')))
+            ->add('owner', HiddenType::class)
+            ->add('date', null, array('attr'=>array('style'=>'display:none;')))
+            ->add('Rechercher', SubmitType::class, array('label' => 'Commenter','attr'  => array('class' => 'btn btn-submit')))
         ;
     }
     

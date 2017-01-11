@@ -36,22 +36,29 @@ class Comment
     private $repoId;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="ownerId", type="integer")
+     * @ORM\Column(name="owner", type="string")
      */
-    private $ownerId;
+    private $owner;
 
     /**
      * @ORM\Column(type="datetime")
      */
     private $date;
 
-
-    public function __construct()
+    /**
+     * Comment constructor.
+     * @param int $repoId
+     * @param string $owner
+     */
+    public function __construct($repoId, $owner)
     {
+        $this->repoId = $repoId;
+        $this->owner = $owner;
         $this->date = new \Datetime();
     }
+
 
     /**
      * Get id
@@ -110,26 +117,26 @@ class Comment
     }
 
     /**
-     * Set ownerId
+     * Set owner
      *
-     * @param integer $ownerId
+     * @param string $owner
      * @return Comment
      */
-    public function setOwnerId($ownerId)
+    public function setOwner($owner)
     {
-        $this->ownerId = $ownerId;
+        $this->owner = $owner;
 
         return $this;
     }
 
     /**
-     * Get ownerId
+     * Get owner
      *
-     * @return integer 
+     * @return string
      */
-    public function getOwnerId()
+    public function getOwner()
     {
-        return $this->ownerId;
+        return $this->owner;
     }
 
     /**

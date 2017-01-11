@@ -53,15 +53,35 @@ class DefaultController extends Controller
      */
     public function addComment($gitUser, $repoId, Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+        $commentRepo = $em->getRepository('AppBundle:Comment');
         $gitService = $this->get('git');
+
+        //get Github repo information
         $repo = $gitService->getOneRepo($gitUser, $repoId);
 
-        $comment = new Comment();
+        //get comment for the selected repo
+        $comments = $commentRepo->findBy(
+            array('repoId' => $repoId, 'owner' => $gitUser),
+            array('date' => 'desc')
+        );
+
+        $comment = new Comment($repoId, $gitUser);
         $form = $this->createForm(CommentType::class, $comment);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $post = $form->getData();
+
+            $em->persist($post);
+            $em->flush();
+        }
 
         return $this->render('AppBundle::addComment.html.twig', array(
             'form' => $form->createView(),
             'repo' => $repo,
+            'comments' => $comments
         ));
     }
 }

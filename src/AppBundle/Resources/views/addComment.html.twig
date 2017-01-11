@@ -27,4 +27,11 @@
             {{ form_end(form) }}
         </div>
     </div>
+    <div class="container">
+        {% if comments is not empty %}
+            {% for comment in comments %}
+                <p>{{ comment.owner ~ ' : ' ~ comment.comment }}</p>
+            {% endfor %}
+        {% endif %}
+    </div>
 {% endblock %}
