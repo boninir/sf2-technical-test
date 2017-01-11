@@ -20,9 +20,32 @@ class Git
         $client = new Client();
 
         $res = $client->request('GET', $url);
+        if ($res->getStatusCode() != 200) {
+            return array();
+        }
+
         $repos = json_decode($res->getBody()->getContents());
 
         return $repos;
+    }
+
+    /**
+     * @param string $gitUserName
+     * @param string $repoId
+     *
+     * @return mixed
+     */
+    public function getOneRepo($gitUserName, $repoId)
+    {
+        $repos = $this->getRepos($gitUserName);
+
+        foreach ($repos as $repo) {
+            if($repo->id == $repoId) {
+                return $repo;
+            }
+        }
+
+        return;
     }
 
 }

@@ -32,11 +32,10 @@
       {% if repos is not empty %}
          {% for repo in repos %}
             <p>
-               <a href="/">{{ repo.name }}</a>
+               <a href="{{ path('addComment', {'gitUser': repo.owner.login, 'repoId': repo.id} ) }}" id="{{ repo.id }}">{{ repo.name }}</a>
             </p>
          {% endfor %}
       {% endif %}
 
    </div>
-
 {% endblock %}
