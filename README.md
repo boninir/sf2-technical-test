@@ -62,6 +62,7 @@ couvrir, mais plus de se faire une idée de la marche à suivre pour tester), j'
 Travis pour lancer mes tests (c'est quand même bien pratique). J'ai aussi lancé une build sur scrutinizer histoire de 
 checker le code (le tout est de se faire une idée globale du code quality, il est pas topissime, mais le code reste tout de meme
 assez simple à la lecture d'apres le report :-) )
+Note : Depuis mes derniers commit, ma CI est au rouge pour des soucis liés à des dépendances doctrines et twig pour certaines versions de php, en lançant les test directement avec phpunit, pas de soucis particulier sur nos postes "normalement" :-)
 * temps passé : pour être totalement transparent, entre 5 et 6h
 
 ## Lancement
