@@ -47,3 +47,50 @@ https://api.github.com/search/users
 * Envoyez le lien avec le projet à recrutement@stadline.com. 
 
 **Bonne chance !**
+
+### Commentaires Raphael
+
+* Je me suis efforcé de suivre toutes les directives au mieux, j'ai un peu bataillé et perdu du temps sur l'aspect 
+authentification (j'en fais pas tout les jours, pour le coup, je me suis rendu compte que j'étais bien rouillé). On 
+nottera aussi que la mise en page n'est pas trop travaillée, je suis un peu plus habitué au back qu'au front ^^'.
+* Je n'ai pas totalement respecté les directives sur les url à appeler pour naviguer sur l'application 
+(surtout sur le pattern décrit, mais globalement, la feature est la).
+* Pas de soucis particulier pour le reste, concernant la partie bonus, comme évoqué plus haut la mise en page reste très
+discutable (au vu du temps perdu, je me sentais pas la foie de gérer le front avec du ReactJS, en 4h c'était un peu ambitieux).
+J'ai fait une partie des tests fonctionnel, je n'ai pas couvert toute l'application (je pense que le but ici n'était pas de tout
+couvrir, mais plus de se faire une idée de la marche à suivre pour tester), j'ai aussi mis en place une CI en intégrant 
+Travis pour lancer mes tests (c'est quand même bien pratique). J'ai aussi lancé une build sur scrutinizer histoire de 
+checker le code (le tout est de se faire une idée globale du code quality, il est pas topissime, mais le code reste tout de meme
+assez simple à la lecture d'apres le report :-) )
+* temps passé : pour être totalement transparent, entre 5 et 6h
+
+## Lancement
+
+Pour faire tourner le projet chez vous, rien de plus simple :
+
+```bash
+git clone git@github.com:boninir/sf2-technical-test.git
+cd sf2-technical-test.git
+composer install
+php app/console doctrine:database:create
+php app/console doctrine:schema:update --force
+```
+
+Vous pouvez ensuite lancer un serveur php via :
+
+```bash
+php app/console server:start
+```
+
+Pensez à générer un ou deux utilisateurs de tests :
+
+```bash
+php app/console fos:user:create bigg bigg@darkligther.com bigg
+php app/console fos:user:create wedge wedge@antilles.com wedge
+```
+
+Vous pourrez ainsi accéder à l'application via le port 8000 de votre machine :
+
+```
+http://127.0.0.1:8000
+```

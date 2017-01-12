@@ -7,8 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Comment
  *
+ * @ORM\Entity
  * @ORM\Table(name="comment")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\CommentRepository")
  */
 class Comment
 {
@@ -20,6 +20,11 @@ class Comment
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     */
+    private $owner;
 
     /**
      * @var string
@@ -34,13 +39,6 @@ class Comment
      * @ORM\Column(name="repoId", type="integer")
      */
     private $repoId;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="owner", type="string")
-     */
-    private $owner;
 
     /**
      * @ORM\Column(type="datetime")
@@ -117,29 +115,6 @@ class Comment
     }
 
     /**
-     * Set owner
-     *
-     * @param string $owner
-     * @return Comment
-     */
-    public function setOwner($owner)
-    {
-        $this->owner = $owner;
-
-        return $this;
-    }
-
-    /**
-     * Get owner
-     *
-     * @return string
-     */
-    public function getOwner()
-    {
-        return $this->owner;
-    }
-
-    /**
      * @return mixed
      */
     public function getDate()
@@ -152,5 +127,27 @@ class Comment
     public function setDate($date)
     {
         $this->date = $date;
+    }
+
+    /**
+     * Set owner
+     *
+     * @param User $owner
+     *
+     * @return Comment
+     */
+    public function setOwner(User $owner = null)
+    {
+        $this->owner = $owner;
+
+        return $this;
+    }
+
+    /**
+     * Get owner
+     */
+    public function getOwner()
+    {
+        return $this->owner;
     }
 }

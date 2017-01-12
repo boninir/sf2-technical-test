@@ -18,9 +18,9 @@ class CommentType extends AbstractType
         $builder
             ->add('comment')
             ->add('repoId', HiddenType::class)
-            ->add('owner', HiddenType::class)
+            ->add('owner')
             ->add('date', null, array('attr'=>array('style'=>'display:none;')))
-            ->add('Rechercher', SubmitType::class, array('label' => 'Commenter','attr'  => array('class' => 'btn btn-submit')))
+            ->add('search', SubmitType::class, array('label' => 'Commenter','attr' => array('class' => 'btn btn-submit')))
         ;
     }
     

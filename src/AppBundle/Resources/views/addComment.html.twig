@@ -16,21 +16,24 @@
     <div class="container">
         <div class="jumbotron">
             <h1>{{ repo.name }}</h1>
-            <p class="lead">Remplissez le formulaire afin d'ajouter un commentaire sur ce repo.</p>
+            <p class="lead">Remplissez le formulaire afin d'ajouter un commentaire sur ce repo (n'hésitez pas à basher l'auteur de ce projet qui s'est vraiment pas cassé la tête pour la mise en page).</p>
             <p>
         </div>
     </div>
     <div class="container">
         <div class="form-group">
             {{ form_start(form) }}
-            {{ form_widget(form) }}
+            {{ form_widget(form.comment) }}
+            {{ form_widget(form.date, { 'attr' : { 'style':'display:none'} }) }}
+            {{ form_widget(form.owner, { 'attr' : { 'style':'display:none'} }) }}
+            {{ form_widget(form.search) }}
             {{ form_end(form) }}
         </div>
     </div>
     <div class="container">
         {% if comments is not empty %}
             {% for comment in comments %}
-                <p>{{ comment.owner ~ ' : ' ~ comment.comment }}</p>
+                <p>{{ comment.owner.username ~ ' dit : ' ~ comment.comment }}</p>
             {% endfor %}
         {% endif %}
     </div>
